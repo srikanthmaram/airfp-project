@@ -1,0 +1,119 @@
+.dash-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.dash-title {
+  margin-bottom: 20px;
+}
+
+.dash-card-row {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.dash-card {
+  flex: 1;
+  min-width: 180px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.num {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 14px;
+  color: #555;
+}
+
+.quick-actions {
+  margin-top: 25px;
+  display: flex;
+  gap: 12px;
+}
+
+.quick-actions button {
+  padding: 10px 15px;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.quick-actions button:hover {
+  background: #125a9c;
+}
+
+.section-title {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+.recent-list {
+  border-left: 2px solid #1976d2;
+  padding-left: 15px;
+}
+
+.recent-item {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #1976d2;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.recent-text {
+  font-size: 14px;
+}
+
+.recent-date {
+  font-size: 12px;
+  color: #777;
+}
+
+.recommend-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.rec-card {
+  width: 270px;
+  background: #fafafa;
+  border: 1px solid #ddd;
+  padding: 18px;
+  border-radius: 6px;
+}
+
+.view-btn {
+  margin-top: 10px;
+  background: #1976d2;
+  color: white;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.view-btn:hover {
+  background: #125a9c;
+}
+
+.dash-loading {
+  text-align: center;
+  padding: 40px;
+}

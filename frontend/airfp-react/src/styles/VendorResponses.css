@@ -1,0 +1,64 @@
+.vr-container {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.vr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vr-select {
+  padding: 8px;
+  width: 250px;
+}
+
+.vr-body {
+  margin-top: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.vr-list {
+  flex: 1;
+}
+
+.vr-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vr-table th,
+.vr-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+.vr-view-btn {
+  padding: 6px 10px;
+  background: #4a57ff;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.vr-right-panel {
+  flex: 1;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.vr-placeholder {
+  color: #888;
+  margin-top: 40px;
+  text-align: center;
+}
+
+.vr-loading {
+  padding: 20px;
+  text-align: center;
+}

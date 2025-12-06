@@ -1,0 +1,128 @@
+.rec-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.rec-title {
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.rec-summary-text {
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.best-card {
+  background: #e8f5e9;
+  border-left: 6px solid #4caf50;
+  padding: 20px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+}
+
+.best-vendor-name {
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.score-pill {
+  display: inline-block;
+  background: #4caf50;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #fff;
+  margin: 10px 0;
+}
+
+.section-header {
+  font-size: 20px;
+  margin: 20px 0 10px;
+}
+
+.comparison-grid {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.vendor-compare-card {
+  border: 1px solid #ccc;
+  padding: 15px;
+  flex: 1 1 45%;
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.vc-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.score {
+  background: #1976d2;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.detail-card {
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score-large {
+  background: #1976d2;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.score-bar {
+  width: 100%;
+  background: #eee;
+  height: 10px;
+  border-radius: 4px;
+  margin: 10px 0;
+}
+
+.score-fill {
+  height: 10px;
+  background: #4caf50;
+  border-radius: 4px;
+}
+
+.info-row {
+  display: flex;
+  gap: 30px;
+}
+
+.justification {
+  margin-top: 10px;
+  color: #555;
+}
+
+.rec-loading {
+  text-align: center;
+  padding: 40px;
+}
+
+.rec-error {
+  color: red;
+  text-align: center;
+  padding: 20px;
+}

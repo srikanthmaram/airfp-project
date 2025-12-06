@@ -1,0 +1,178 @@
+.vs-container {
+  display: flex;
+  height: 90vh;
+  padding: 20px;
+  gap: 20px;
+  background: #f4f6f8;
+}
+
+/* LEFT PANEL */
+.vs-left {
+  width: 30%;
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  overflow-y: auto;
+}
+
+.vs-rfp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vs-rfp-list li {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.vs-rfp-list li:hover {
+  background: #eef2ff;
+}
+
+.vs-rfp-list li.active {
+  background: #dce1ff;
+  border-left: 4px solid #4a57ff;
+}
+
+.vs-rfp-title {
+  font-weight: bold;
+}
+
+/* RIGHT PANEL */
+.vs-right {
+  flex: 1;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  display: flex;
+  flex-direction: column;
+}
+
+.vs-vendor-list {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.vs-vendor-card {
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 6px;
+  background: #fafafa;
+  margin-bottom: 10px;
+}
+
+.vs-vendor-name {
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.vs-vendor-info {
+  margin-left: 25px;
+  font-size: 14px;
+  color: #555;
+}
+
+/* PREVIEW */
+.vs-preview {
+  padding: 12px;
+  border-radius: 6px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  margin-bottom: 15px;
+}
+
+/* SEND BUTTON */
+.vs-send-btn {
+  padding: 12px;
+  background: #4a57ff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.vs-send-btn:hover {
+  background: #3a46db;
+}
+
+.vs-message {
+  margin-top: 10px;
+  color: green;
+  font-weight: bold;
+}
+
+.vs-loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.vs-loading-box {
+  background: white;
+  padding: 25px 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+}
+
+.vs-loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #ddd;
+  border-top: 4px solid #4a57ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.vs-error {
+  background: #ffe1e1;
+  padding: 10px;
+  color: #b30000;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.vs-success {
+  background: #e2ffe7;
+  padding: 10px;
+  color: #006622;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+.vs-send-btn {
+  margin-top: 15px;
+  background: #4a57ff;
+  color: white;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.25s;
+}
+
+.vs-send-btn:hover {
+  background: #313de0;
+}

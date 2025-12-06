@@ -1,0 +1,15 @@
+# root ignores
+/node_modules
+/dist
+/.idea
+/.vscode
+
+# backend ignores
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# frontend ignores
+frontend/node_modules/
+frontend/dist/
