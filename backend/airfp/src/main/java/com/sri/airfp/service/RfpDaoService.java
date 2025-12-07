@@ -19,6 +19,8 @@ public class RfpDaoService {
     public RfpEntity saveRfp(RfpResponse response) throws Exception {
 
 
+
+
         RfpEntity rfp = new RfpEntity();
         rfp.setTitle(response.title);
         rfp.setDescription(response.description);
@@ -31,6 +33,7 @@ public class RfpDaoService {
         List<RfpItemEntity> entities = response.items.stream().map(item -> {
             try {
                 RfpItemEntity e = new RfpItemEntity();
+
                 e.setItemName(item.item_name);
                 e.setQuantity(item.quantity);
                 e.setSpecsJson(mapper.writeValueAsString(item.specs));

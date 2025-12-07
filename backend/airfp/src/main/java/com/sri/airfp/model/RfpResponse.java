@@ -1,7 +1,10 @@
 package com.sri.airfp.model;
 
+import lombok.Data;
+
 import java.util.List;
 
+@Data
 public class RfpResponse {
     public String title;
     public String description;

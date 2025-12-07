@@ -6,32 +6,23 @@ This project extracts RFPs, sends them to vendors, collects responses, evaluates
 Tech Stack
 
 Backend :
-
 Spring Boot 3+
-
 Java 17+
-
-SQL Server
-
 JPA + Hibernate
+Database :
+MS SQL Server datbase
 
+
+LLM:
 OpenRouter API (LLM)
-
+Vosk Speech to Text offline Model
 JavaMail (IMAP/SMTP)
 
 
-
-
-
-
 Frontend :
-
 React + Vite
-
 Axios
-
 React Router
-
 
 
 Project Structure
@@ -41,76 +32,55 @@ Project Structure
    └── README.md  (this file)
    
 
-Features
-RFP Extraction
+Features :
 
-User Prompt → backend extracts title, items, budget, warranty, timeline, payment terms.
+1. RFP Extraction
 
-Send RFP to Vendors
+2. User Prompt → backend extracts title, items, budget, warranty, timeline, payment terms.
 
-Select RFP + Vendors → system emails RFP automatically.
+3. Send RFP to Vendors
 
-Vendor Response Capture
+4. Select RFP + Vendors → system emails RFP automatically.
 
-Vendor emails are parsed automatically by IMAP polling.
+5. Vendor Response Capture
 
-AI Vendor Evaluation
+6. Vendor emails are parsed automatically by IMAP polling.
 
-LLM compares vendor responses and produces:
+7. AI Vendor Evaluation
 
-Ranking
+8. LLM compares vendor responses and produces:
 
-Scores
+       Ranking,Scores,Strengths & weaknesses.
 
-Strengths & weaknesses
+9. Final recommendation & Summary
 
-Final recommendation
+10. Dashboard Shows:
 
-Summary
+  Total RFPs
+  Sent RFPs
+  Recent activity
 
-Dashboard Shows:
-
-Total RFPs
-
-Sent RFPs
-
-Responses
-
-Vendors
-
-Recent activity
+11. Vendor Management
+  Add/View vendors with details.
 
 
 
-Vendor Management
+📦 Running the Project
 
-Add/View vendors with details.
+This project has two applications:
 
-
-How to Run
-Backend
-cd backend
-./mvnw spring-boot:run
-
-Frontend
-cd frontend
-npm install
-npm run dev
-
-Secrets Management (IMPORTANT)
-
-Store sensitive credentials like:
-
-DB URL
-
-EMAIL SMTP credentials
-
-IMAP configuration
-
-OpenRouter API Key
+1️⃣ Start Backend → instructions in /backend/README.md
+2️⃣ Start Frontend → instructions in /frontend/README.md
 
 
 
+🔐 Environment Variables & Secrets
+
+All details are documented inside:
+
+👉 backend/README.md
+
+Secrets are not committed to GitHub.
 
 
 Architecture Diagram:
@@ -122,74 +92,42 @@ Architecture Diagram:
 
 
 ```
+                                  ┌───────────────────────────────┐
+                                  │       AIRfp (React App)       │
+                                  │-------------------------------│
+                                  │   • Dashboard                 │
+                                  │   • Create RFP                │
+                                  │   • Vendor Selection          │
+                                  │   • Add Vendor                │
+                                  │   • Vendor Response           │
+                                  │   • AI Recommendations        │
+                                  └───────────────┬───────────────┘
+                                                  │
+                                                  ▼
+                      ┌────────────────────────────────────────────────────────┐
+                      │                  airfp (Spring Boot App)               │
+                      │--------------------------------------------------------│
+                      │  • RfpExtractionService                                │
+                      │  • VendorProposalService                               │
+                      │  • VendorMessagingService                              │
+                      │  • EmailPollingService                                 │
+                      │  • EmailNormalizationService                           │
+                      │  • EmailReceiverService                                │
+                      │  • VendorEvaluationService                             │
+                      │  • OpenRouterClient                                    │
+                      │  • VoiceToTextService                                  │
+                      └───────────────┬───────────────────────┬────────────────┘
+                                      │                       │
+                                      │                       │
+                                      ▼                       ▼
+                ┌────────────────────────────┐     ┌────────────────────────────┐
+                │            LLMs            │     │      MS SQL SERVER         │
+                │----------------------------│     │          Database           │
+                │  • OpenRouterClient        │     └────────────────────────────┘
+                │  • Vosk Speech to Text     │
+                │     (Offline Model)        │
+                └────────────────────────────┘
 
-
-                        ┌────────────────────────────┐
-                        │         FRONTEND            │
-                        │        (React App)          │
-                        │─────────────────────────────│
-                        │  • Dashboard                │
-                        │  • Create RFP               │
-                        │  • Vendor Selection         │
-                        │  • Vendor Responses         │
-                        │  • AI Recommendations       │
-                        │  • Vendor Management        │
-                        └───────────────┬─────────────┘
-                                        │ REST API calls (Axios)
-                                        ▼
-                ┌──────────────────────────────────────────────────┐
-                │                   BACKEND (Spring Boot)           │
-                │──────────────────────────────────────────────────│
-                │  Controllers (API Layer)                         │
-                │    • RfpController                               │
-                │    • VendorController                            │
-                │    • EvaluationController                        │
-                │    • DashboardController                         │
-                │--------------------------------------------------│
-                │  Services (Business Layer)                       │
-                │    • RfpService                                  │
-                │    • VendorDaoService                            │
-                │    • VendorEmailService (SMTP Sender)            │
-                │    • ImapPollingService (Email Reader)           │
-                │    • VendorEvaluationService (AI Scoring)        │
-                │--------------------------------------------------│
-                │  Repositories (JPA Layer)                        │
-                │    • RfpRepository                               │
-                │    • VendorRepository                            │
-                │    • VendorSentRecordRepository                  │
-                │    • VendorResponseRepository                    │
-                │    • RecommendationResultsRepo                   │
-                └───────────────┬──────────────────────────────────┘
-                                │ Data Persistence
-                                ▼
-                      ┌──────────────────────┐
-                      │     SQL DATABASE     │
-                      │    (SQL Server)      │
-                      │──────────────────────│
-                      │ Tables:              │
-                      │  • RFP               │
-                      │  • RFP_ITEMS         │
-                      │  • VENDORS           │
-                      │  • VENDOR_SENT       │
-                      │  • VENDOR_RESPONSE   │
-                      │  • RECOMMENDATION    │
-                      │  • VENDOR_RANKING    │
-                      └──────────────────────┘
-
-                                        ▲
-                                        │ LLM Prompt
-                                        │ + normalized vendor responses
-                                        ▼
-                       ┌───────────────────────────────────┐
-                       │     AI EVALUATION ENGINE (LLM)    │
-                       │        OpenRouter API             │
-                       │──────────────────────────────────│
-                       │ Generates:                        │
-                       │  • Vendor rankings                │
-                       │  • Scores                         │
-                       │  • Strengths & weaknesses         │
-                       │  • Final recommendation           │
-                       └───────────────────────────────────┘
 
 
 ```

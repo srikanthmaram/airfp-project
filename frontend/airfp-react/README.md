@@ -1,13 +1,24 @@
  AI RFP System (React)
 This is the user interface for managing RFPs, vendors, AI recommendations, and dashboard.
 
+
+### IMPORTANT HOW TO RUN THE APPLICAITON - START ###
+
 Run Frontend:
 
-npm install
-npm run dev
+Step1 : Inside the AIRFP-REACT project root, create a file named:
+           .env
+        Add the following environment variable
+           VITE_API_URL=http://localhost:8080/api
 
-Runs at:
-http://localhost:5173
+
+Step2: npm install
+
+Step3: npm run dev
+
+App will start on http://localhost:5173/
+
+### IMPORTANT HOW TO RUN THE APPLICAITON -- END ###
 
 
 Pages Included

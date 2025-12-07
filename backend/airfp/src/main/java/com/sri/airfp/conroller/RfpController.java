@@ -31,7 +31,6 @@ public class RfpController {
 
 
 
-
     @PostMapping("/extract")
     public RfpResponse extract(@RequestBody RfpExtractRequest request) throws Exception {
 
@@ -47,7 +46,7 @@ public class RfpController {
     @PostMapping("/create")
     public RfpEntity createRfp(@RequestBody RfpResponse request) throws Exception {
 
-        logger.info("Received POST request to /api/rfp/create. Request details: {}", request.toString());
+        logger.info("Received POST request to /api/rfp/create. Request details: {}", request);
 
         return  rfpDaoService.saveRfp(request);
     }

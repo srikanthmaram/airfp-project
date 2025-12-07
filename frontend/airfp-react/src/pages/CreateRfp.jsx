@@ -11,8 +11,8 @@ function ItemRow({ item, index, onChange, onRemove }) {
     <div className="item-row" role="row">
       <input
         className="cell item-name"
-        value={item.itemName}
-        onChange={(e) => onChange(index, { ...item, itemName: e.target.value })}
+        value={item.item_name}
+        onChange={(e) => onChange(index, { ...item, item_name: e.target.value })}
         placeholder="Item name"
       />
       <input
@@ -218,7 +218,7 @@ const audioBufferToWav = (audioBuffer) => {
       
       const itemsFromLLM = Array.isArray(structured.items) ? structured.items : [];
       const normalized = itemsFromLLM.map((it) => ({
-        itemName: it.item_name ?? it.name ?? "",
+        item_name: it.item_name ?? it.name ?? "",
         quantity: Number(it.quantity ?? 0),
         unit: it.unit ?? "",
         specsJson: it.specs ? JSON.stringify(it.specs) : (it.specsJson ?? ""),
@@ -240,7 +240,7 @@ const audioBufferToWav = (audioBuffer) => {
     setItems((prev) => prev.filter((_, i) => i !== idx));
   }
   function onAddItem() {
-    setItems((prev) => [...prev, { itemName: "", quantity: 1, unit: "", specsJson: "" }]);
+    setItems((prev) => [...prev, { item_name: "", quantity: 1, unit: "", specsJson: "" }]);
   }
 
   function validateBeforeSave() {
@@ -248,7 +248,7 @@ const audioBufferToWav = (audioBuffer) => {
     if (!items || items.length === 0) return "At least one item is required";
     for (let i = 0; i < items.length; i++) {
       const it = items[i];
-      if (!it.itemName || it.itemName.trim().length === 0) return `Item ${i + 1}: name required`;
+      if (!it.item_name || it.item_name.trim().length === 0) return `Item ${i + 1}: name required`;
       if (isNaN(Number(it.quantity)) || Number(it.quantity) <= 0) return `Item ${i + 1}: quantity must be > 0`;
       if (it.specsJson && it.specsJson.trim()) {
         try {
@@ -268,6 +268,7 @@ const audioBufferToWav = (audioBuffer) => {
       setError(v);
       return;
     }
+    
 
     const payload = {
       title,
@@ -277,7 +278,7 @@ const audioBufferToWav = (audioBuffer) => {
       warranty,
       rfpText,
       items: items.map((it) => ({
-        itemName: it.itemName,
+        item_name: it.item_name,
         quantity: Number(it.quantity),
         specs: it.specsJson ? JSON.parse(it.specsJson) : {},
         unit: it.unit,
@@ -286,6 +287,7 @@ const audioBufferToWav = (audioBuffer) => {
 
     setSaving(true);
     try {
+      
       const res = await createRfp(payload); 
       
       const created = res.data;
