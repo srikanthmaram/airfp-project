@@ -46,6 +46,12 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.alphacephei</groupId>
+			<artifactId>vosk</artifactId>
+			<version>0.3.45</version>
+		</dependency>
+
 		<!-- HTTP client -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

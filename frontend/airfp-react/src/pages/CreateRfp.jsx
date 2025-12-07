@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { createRfp, extractRfp } from "../services/api"; // make sure this exists
+import { createRfp, extractRfp,getSpeechtoText } from "../services/api"; // make sure this exists
 import "../styles/createRfp.css";
+
+import { FaMicrophone, FaStop } from "react-icons/fa";
+
 
 function ItemRow({ item, index, onChange, onRemove }) {
   return (
@@ -41,6 +44,9 @@ function ItemRow({ item, index, onChange, onRemove }) {
 
 export default function CreateRfp() {
   const navigate = useNavigate();
+const [recording, setRecording] = useState(false);
+const [mediaRecorder, setMediaRecorder] = useState(null);
+const audioChunks = useRef([]);
 
   
   const [rfpText, setrfpText] = useState("");
@@ -60,6 +66,98 @@ export default function CreateRfp() {
   const [loadingExtract, setLoadingExtract] = useState(false);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+
+
+
+const startRecording = async () => {
+  const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+  const recorder = new MediaRecorder(stream);
+
+  audioChunks.current = [];
+  recorder.ondataavailable = (e) => audioChunks.current.push(e.data);
+
+  recorder.start();
+  setMediaRecorder(recorder);
+  setRecording(true);
+};
+
+const stopRecording = async () => {
+  return new Promise((resolve) => {
+    mediaRecorder.onstop = async () => {
+      const audioBlob = new Blob(audioChunks.current, { type: "audio/webm" });
+      const wavBlob = await convertTo16kWav(audioBlob);
+
+      // send to backend
+      const formData = new FormData();
+      formData.append("file", wavBlob, "audio.wav");
+
+      const res = await getSpeechtoText(formData)
+
+     
+
+      // SET THE TEXTAREA
+      setrfpText(res.data.text);
+
+      resolve();
+    };
+
+    mediaRecorder.stop();
+    setRecording(false);
+  });
+};
+
+// Convert to 16kHz WAV (same as earlier)
+const convertTo16kWav = async (blob) => {
+  const arrayBuffer = await blob.arrayBuffer();
+  const audioCtx = new AudioContext();
+  const decoded = await audioCtx.decodeAudioData(arrayBuffer);
+
+  const offline = new OfflineAudioContext(1, decoded.duration * 16000, 16000);
+  const source = offline.createBufferSource();
+  source.buffer = decoded;
+  source.connect(offline.destination);
+  source.start(0);
+
+  const rendered = await offline.startRendering();
+  return audioBufferToWav(rendered);
+};
+
+const audioBufferToWav = (audioBuffer) => {
+  const samples = audioBuffer.getChannelData(0);
+  const sampleRate = 16000;
+
+  const buffer = new ArrayBuffer(44 + samples.length * 2);
+  const view = new DataView(buffer);
+
+  const writeString = (offset, str) => {
+    for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+  };
+
+  writeString(0, "RIFF");
+  view.setUint32(4, 32 + samples.length * 2, true);
+  writeString(8, "WAVE");
+  writeString(12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true);
+  view.setUint16(22, 1, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * 2, true);
+  view.setUint16(32, 2, true);
+  view.setUint16(34, 16, true);
+  writeString(36, "data");
+  view.setUint32(40, samples.length * 2, true);
+
+  let offset = 44;
+  for (let i = 0; i < samples.length; i++, offset += 2) {
+    const s = Math.max(-1, Math.min(1, samples[i]));
+    view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+  }
+
+  return new Blob([buffer], { type: "audio/wav" });
+};
+
+
+
 
   function resetStructured() {
     setPreviewJson(null);
@@ -90,7 +188,7 @@ export default function CreateRfp() {
       const res = await extractRfp({ rfpText, extractOnly: true }); // endpoint should honour extractOnly flag
       
       // server should return { structured: { ... } } or raw JSON string — adapt as per your backend
-      const data = res.data;
+      const data =res.data;
 
       // Accept either raw string or object
       let structured = null;
@@ -216,14 +314,36 @@ export default function CreateRfp() {
           placeholder="Paste the RFP description, requirements or vendor email content here..."
         />
 
-        <div className="row actions">
-          <button className="btn btn-primary" onClick={handleExtract} disabled={loadingExtract}>
-            {loadingExtract ? "Extracting..." : "Extract Structured Data (LLM)"}
-          </button>
-          <button className="btn btn-secondary" onClick={resetStructured}>
-            Reset
-          </button>
-        </div>
+        <div className="row actions" style={{ display: "flex", alignItems: "center", gap: 10 }}>
+  
+  <button className="btn btn-primary" onClick={handleExtract} disabled={loadingExtract}>
+    {loadingExtract ? "Extracting..." : "Extract Structured Data (LLM)"}
+  </button>
+
+  {/* MIC BUTTON */}
+  {recording ? (
+    <button 
+      className="btn btn-danger" 
+      style={{ padding: "8px 12px" }}
+      onClick={stopRecording}
+    >
+      <FaStop size={18}/> Stop
+    </button>
+  ) : (
+    <button 
+      className="btn btn-success" 
+      style={{ padding: "8px 12px" }}
+      onClick={startRecording}
+    >
+      <FaMicrophone size={18}/> Speak
+    </button>
+  )}
+
+  <button className="btn btn-secondary" onClick={resetStructured}>
+    Reset
+  </button>
+</div>
+
 
         {error && <div className="error">{error}</div>}
 
@@ -288,6 +408,7 @@ export default function CreateRfp() {
          
         </div>
       </div>
+  
     </div>
   );
 }

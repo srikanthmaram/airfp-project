@@ -1,14 +1,14 @@
 
 import axios from "axios"
 
-const API_URL=process.env.API_URL;
+const API_BASE_URL = import.meta.env.VITE_API_URL;
 
 
 const API = axios.create({
-  baseURL:API_URL
+  baseURL:API_BASE_URL
 });
 
-export const extractRfp = (data) => API.post("/rfp/extract", data);
+export const extractRfp = (data) =>API.post("/rfp/extract", data)
 export const createRfp = (data) => API.post("/rfp/create", data);
 export const getRfp=(id)=>API.get(`/rfp/${id}`)
 
@@ -36,6 +36,11 @@ export const sendRfpToVendors = (rfpId, vendorIds) =>
 
 export const getVendorResponsesByRfp = (rfpId) =>
   API.get(`/vendor/vendor-responses/rfp/${rfpId}`);
+
+
+
+
+export const getSpeechtoText=(data)=>API.post("/voice/transcribe",data)
 
 
 
