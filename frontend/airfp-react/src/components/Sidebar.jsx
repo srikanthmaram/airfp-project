@@ -10,7 +10,7 @@ export default function Sidebar() {
       <Link to="/vendor-selection">Vendor Selection</Link>
       <Link to="/vendor-responses">Vendor Responses</Link>
       <Link to="/addvendors">Add Vendor</Link>
-      <Link to="/recommendation">Recommendation</Link>
+      <Link to="/recommendation">AI Recommendations</Link>
     </div>
   );
 }

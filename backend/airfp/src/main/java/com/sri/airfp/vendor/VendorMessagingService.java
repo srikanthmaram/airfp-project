@@ -1,6 +1,9 @@
-package com.sri.airfp.email;
+package com.sri.airfp.vendor;
 
 
+import com.sri.airfp.email.EmailService;
+import com.sri.airfp.email.TrackingIdGenerator;
+import com.sri.airfp.email.VendorEmailTemplate;
 import com.sri.airfp.entity.RfpEntity;
 
 import com.sri.airfp.entity.VendorSentRecord;

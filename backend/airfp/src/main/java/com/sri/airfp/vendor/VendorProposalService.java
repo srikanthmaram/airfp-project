@@ -1,6 +1,5 @@
 package com.sri.airfp.vendor;
 
-import com.sri.airfp.email.VendorMessagingService;
 import com.sri.airfp.entity.RfpEntity;
 import com.sri.airfp.model.VendorSelectionRequest;
 import com.sri.airfp.repo.RfpRepository;

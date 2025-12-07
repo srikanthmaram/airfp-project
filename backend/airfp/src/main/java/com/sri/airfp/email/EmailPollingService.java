@@ -113,7 +113,7 @@ public class EmailPollingService {
         responseEntity.setSentRecord(sentRecord);
         responseEntity.setRawLlmJson(cleaned);
 
-        // 4) map to canonical normalizedJson (pick first element if array)
+
         String normalized;
         if (cleaned.trim().startsWith("[")) {
             // pick first element
