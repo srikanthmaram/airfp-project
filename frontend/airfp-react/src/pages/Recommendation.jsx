@@ -33,11 +33,11 @@ export default function Recommendation() {
   return (
     <div className="rec-container">
 
-      {/* Header */}
+      
       <h2 className="rec-title">AI Vendor Recommendation</h2>
       <p className="rec-summary-text">{summary}</p>
 
-      {/* Best Vendor Section */}
+      
       <div className="best-card">
         <h3>Recommended Vendor</h3>
         <p className="best-vendor-name">
@@ -47,7 +47,7 @@ export default function Recommendation() {
         <p className="justification">{bestVendor.justification}</p>
       </div>
 
-      {/* Comparison Grid */}
+      
       <h3 className="section-header">Vendor Comparison</h3>
 
       <div className="comparison-grid">
@@ -75,7 +75,7 @@ export default function Recommendation() {
         ))}
       </div>
 
-      {/* Detailed Vendor Cards */}
+      
       <h3 className="section-header">Detailed Evaluations</h3>
 
       {rankings.map((v) => (

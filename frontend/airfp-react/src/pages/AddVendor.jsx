@@ -1,4 +1,4 @@
-// src/pages/AddVendor.jsx
+
 import React, { useState ,useEffect} from "react";
 import { createVendor,getAllVendors } from "../services/api";
 import "../styles/AddVendor.css";
@@ -28,7 +28,7 @@ const loadVendors = async () => {
   }
 };
 
-  const [status, setStatus] = useState(null); // success / error / loading
+  const [status, setStatus] = useState(null); 
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -119,7 +119,7 @@ const loadVendors = async () => {
 
       
     </div>
-    {/* Vendor List Section */}
+    
 <div className="vendor-list-container">
   <h3 className="vendor-list-title"> Vendors List</h3>
 

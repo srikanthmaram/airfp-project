@@ -13,7 +13,7 @@ export default function VendorSelection() {
   const [statusMessage, setStatusMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  // load RFPs + Vendors
+  
   useEffect(() => {
     getAllRfps()
       .then((res) => setRfps(res.data))
@@ -53,7 +53,7 @@ export default function VendorSelection() {
   return (
     <div className="vs-container">
 
-      {/* LOADING OVERLAY */}
+      
       {loading && (
         <div className="vs-loading-overlay">
           <div className="vs-loading-box">

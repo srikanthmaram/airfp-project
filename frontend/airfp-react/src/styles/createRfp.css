@@ -5,7 +5,7 @@
   padding: 18px;
 }
 
-/* Left form column */
+
 .left-col {
   flex: 1;
   min-width: 520px;
@@ -16,7 +16,7 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
-/* Right preview column */
+
 .right-col {
   width: 420px;
   background: #ffffff;
@@ -26,7 +26,7 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.03);
 }
 
-/* Inputs */
+
 .label {
   display: block;
   font-weight: 600;
@@ -48,7 +48,7 @@
   resize: vertical;
 }
 
-/* Buttons */
+
 .row.actions { display:flex; gap:12px; margin-top:10px; align-items:center; }
 .btn {
   padding: 8px 12px;
@@ -70,14 +70,14 @@
   border-color: #16a34a;
 }
 
-/* form block */
+
 .form-block { margin-top: 16px; }
 
-/* Two columns row */
+
 .two-cols { display:flex; gap:12px; }
 .two-cols > div { flex: 1; }
 
-/* Items */
+
 .section-title { margin-top: 16px; font-weight: 700; }
 .items-header {
   display:flex;
@@ -109,7 +109,7 @@
 }
 .btn-remove:hover { opacity:0.95; }
 
-/* preview */
+
 .preview-box {
   background: #0f172a;
   color: #e6eef8;
@@ -123,6 +123,6 @@
 }
 .preview-actions { margin-top: 12px; display:flex; gap:8px; }
 
-/* misc */
+
 .muted { color: #6b7280; font-size: 13px; padding: 8px 12px; background:#fafafa; border-radius:6px; }
 .error { margin-top:12px; color: #b91c1c; font-weight:600; }

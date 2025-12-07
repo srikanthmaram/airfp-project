@@ -44,30 +44,7 @@ export const getSpeechtoText=(data)=>API.post("/voice/transcribe",data)
 
 
 
-// ----------------------------
-// VENDOR RESPONSES
-// ----------------------------
 
-// Fetch all vendor responses for RFP
-export const getVendorResponses = (rfpId) =>
-  API.get(`/vendor-responses/rfp/${rfpId}`);
-
-
-// ----------------------------
-// SCORING & EVALUATION
-// ----------------------------
-
-// Get vendor evaluation scores for an RFP
-export const getVendorScores = (rfpId) =>
-  API.get(`/vendor-evaluation/${rfpId}`);
-
-
-// ----------------------------
-// EMAIL POLLING (optional triggers)
-// ----------------------------
-
-// Force manual poll (helpful during dev)
-export const pollEmails = () => API.post("/email/poll-now");
 
 
 

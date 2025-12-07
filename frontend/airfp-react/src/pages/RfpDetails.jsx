@@ -1,4 +1,4 @@
-// src/screens/RfpDetails.js
+
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../styles/RfpDetails.css";
@@ -32,7 +32,7 @@ export default function RfpDetails() {
   return (
     <div className="rfp-details-container">
 
-      {/* Header Card */}
+      
       <div className="rfp-header-card">
         <h1>{rfp.title}</h1>
         <p className="desc">{rfp.description}</p>
@@ -52,7 +52,7 @@ export default function RfpDetails() {
         </div>
       </div>
 
-      {/* Items List */}
+      
       <div className="items-section">
         <h2>Items</h2>
 

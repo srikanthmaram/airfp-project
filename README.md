@@ -114,6 +114,16 @@ OpenRouter API Key
 
 
 Architecture Diagram:
+
+
+
+![Architecture Diagram](./docs/architecture.png)
+
+
+
+```
+
+
                         ┌────────────────────────────┐
                         │         FRONTEND            │
                         │        (React App)          │
@@ -180,6 +190,9 @@ Architecture Diagram:
                        │  • Strengths & weaknesses         │
                        │  • Final recommendation           │
                        └───────────────────────────────────┘
+
+
+```
 
 
 

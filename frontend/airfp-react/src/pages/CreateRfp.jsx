@@ -181,26 +181,24 @@ const audioBufferToWav = (audioBuffer) => {
     setPreviewJson(null);
     setPreviewRaw("");
     try {
-      // backend expected to call LLM and return structured JSON (canonical schema).
-      // Using createRfp endpoint for extraction is fine if your server supports it.
-      // Here we call an extract endpoint; if your backend uses create directly, you can adapt.
-      const payload = { rfpText }; // backend: call LLM and return structured JSON
-      const res = await extractRfp({ rfpText, extractOnly: true }); // endpoint should honour extractOnly flag
       
-      // server should return { structured: { ... } } or raw JSON string — adapt as per your backend
+      const payload = { rfpText }; 
+      const res = await extractRfp({ rfpText, extractOnly: true }); 
+      
+      
       const data =res.data;
 
-      // Accept either raw string or object
+      
       let structured = null;
       if (typeof data === "string") {
-        // assume raw JSON text
+        
         structured = JSON.parse(data);
         setPreviewRaw(data);
       } else if (data?.structured) {
         structured = data.structured;
         setPreviewRaw(JSON.stringify(structured, null, 2));
       } else if (data?.id) {
-        // If create returned created entity, and includes structured in body
+        
         structured = data;
         setPreviewRaw(JSON.stringify(structured, null, 2));
       } else {
@@ -210,14 +208,14 @@ const audioBufferToWav = (audioBuffer) => {
 
       setPreviewJson(structured);
 
-      // Map structured fields to editable form (best-effort)
+      
       setTitle(structured.title ?? "");
       setDescription(structured.description ?? "");
       setBudget(structured.budget ?? "");
       setDeliveryDays(structured.delivery_timeline_days ?? "");
       setWarranty(structured.warranty ?? "");
 
-      // items: normalize into our item shape
+      
       const itemsFromLLM = Array.isArray(structured.items) ? structured.items : [];
       const normalized = itemsFromLLM.map((it) => ({
         itemName: it.item_name ?? it.name ?? "",
@@ -291,7 +289,7 @@ const audioBufferToWav = (audioBuffer) => {
       const res = await createRfp(payload); 
       
       const created = res.data;
-      // assume created.id exists
+      
       navigate(`/rfp/${created.id}`);
     } catch (e) {
       console.error(e);
@@ -320,7 +318,7 @@ const audioBufferToWav = (audioBuffer) => {
     {loadingExtract ? "Extracting..." : "Extract Structured Data (LLM)"}
   </button>
 
-  {/* MIC BUTTON */}
+  
   {recording ? (
     <button 
       className="btn btn-danger" 

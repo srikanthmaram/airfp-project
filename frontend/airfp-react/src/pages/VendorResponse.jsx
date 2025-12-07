@@ -49,7 +49,7 @@ export default function VendorResponses() {
       </div>
 
       <div className="vr-body">
-        {/* Left Table */}
+        
         <div className="vr-list">
           {loading ? (
             <div className="vr-loading">Loading responses...</div>
@@ -93,7 +93,7 @@ export default function VendorResponses() {
           )}
         </div>
 
-        {/* Right Panel */}
+        
         <div className="vr-right-panel">
           {selectedResponse ? (
             <>

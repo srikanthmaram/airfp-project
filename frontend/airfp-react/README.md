@@ -1,7 +1,8 @@
  AI RFP System (React)
 This is the user interface for managing RFPs, vendors, AI recommendations, and dashboard.
 
-Run Frontend
+Run Frontend:
+
 npm install
 npm run dev
 
@@ -10,27 +11,26 @@ http://localhost:5173
 
 
 Pages Included
-Dashboard
 
+Dashboard :
+  Stats cards
+  Recent activity
 
-Stats cards
+Create RFP :
+  User Prompt->Extract RFP using LLM->JSON Preview + Form  Preview->save to database
+  Voice record-> Vosk (Speech to Text) -> Prompt -> Extract RFP -> JSON+Form Review -> save to database
 
+Vendor Selection :
+      Pick RFP + Select Vendors → send RFP via email.
 
-Recent activity
+Vendor Responses :
+   1. List all responses.
+   2. Pick one Vendor Response
+   3. AI Recommendation + score + summary
 
+   Select RFP → view best vendor + detailed ranking.
 
-AI recommendations
-
-
-Create RFP
-Upload PDF → extract → modify → save.
-Vendor Selection
-Pick RFP + Vendors → send email.
-Vendor Responses
-List all responses.
-AI Recommendation
-Select RFP → view best vendor + detailed ranking.
-Vendor Management
+Vendor Management :
 Add vendor + list existing vendors.
 
 Folder Structure
@@ -45,9 +45,5 @@ Folder Structure
 
 API Configuration
 src/services/api.js
-import axios from "axios";
 
-export default axios.create({
-  baseURL: "http://localhost:8080/api",
-});
 

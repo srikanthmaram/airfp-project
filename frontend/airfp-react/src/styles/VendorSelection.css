@@ -6,7 +6,7 @@
   background: #f4f6f8;
 }
 
-/* LEFT PANEL */
+
 .vs-left {
   width: 30%;
   background: white;
@@ -42,7 +42,7 @@
   font-weight: bold;
 }
 
-/* RIGHT PANEL */
+
 .vs-right {
   flex: 1;
   background: white;
@@ -78,7 +78,7 @@
   color: #555;
 }
 
-/* PREVIEW */
+
 .vs-preview {
   padding: 12px;
   border-radius: 6px;
@@ -87,7 +87,7 @@
   margin-bottom: 15px;
 }
 
-/* SEND BUTTON */
+
 .vs-send-btn {
   padding: 12px;
   background: #4a57ff;

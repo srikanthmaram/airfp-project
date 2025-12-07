@@ -1,4 +1,4 @@
-/* src/pages/vendor.css */
+
 
 .vendor-container {
   width: 100%;
@@ -75,7 +75,7 @@
 }
 
 
-/* Vendor List Table Section */
+
 .vendor-list-container {
   margin-top: 35px;
 }
@@ -86,7 +86,7 @@
   font-weight: 600;
 }
 
-/* Table */
+
 .vendor-table {
   width: 100%;
   border-collapse: collapse;
@@ -117,7 +117,7 @@
   border-bottom: none;
 }
 
-/* Responsive: stack columns on small screens */
+
 @media (max-width: 600px) {
   .vendor-table thead {
     display: none;
