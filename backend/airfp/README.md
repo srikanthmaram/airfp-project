@@ -23,6 +23,8 @@ LLM ------>     1. API Key for LLM
 Download Speeh to Text Model from my google drive
 https://drive.google.com/drive/folders/1i_bGT1Z-jWhtMLcmpX2LbotTbSwQYlbe?usp=sharing
 
+src/main/resources/STTmodel/vosk-model-small-en-us-0.15 -> make sure model folder end this name after downloading it. [remove timestap after 0.15 if any]
+
 
 How to run :
 
